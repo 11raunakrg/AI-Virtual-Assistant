@@ -15,7 +15,7 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const { serverUrl } = useContext(userDataContext);
+  const { serverUrl, userData, setUserData } = useContext(userDataContext);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -39,10 +39,13 @@ const SignUp = () => {
       );
       setError("");
       setLoading(false);
-      console.log(result);
+      // console.log(result);
+      setUserData(result.data);
+      navigate("/");
     } catch (error) {
       setLoading(false);
       console.log(error);
+      setUserData(null);
       setError(error.response.data.message);
     }
   };

@@ -14,7 +14,7 @@ const LogIn = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const { serverUrl } = useContext(userDataContext);
+  const { serverUrl, userData, setUserData } = useContext(userDataContext);
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -35,10 +35,12 @@ const LogIn = () => {
           withCredentials: true,
         }
       );
-      console.log(result);
+      // console.log(result);
+      setUserData(result.data);
       setError("");
     } catch (error) {
       setLoading(false);
+      setUserData(null);
       setError(error.response.data.message);
     } finally {
       setLoading(false);
