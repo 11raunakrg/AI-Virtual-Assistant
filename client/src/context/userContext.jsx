@@ -7,27 +7,20 @@ const UserContext = ({ children }) => {
   const serverUrl = "http://localhost:3000";
 
   const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [frontendImage, setFrontendImage] = useState(null);
   const [backendImage, setBackendImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleCurrentUser = async () => {
-    setLoading(true);
     try {
-      const result = await axios.get(
-        "http://localhost:3000/api/user/currentuser",
-        {
-          withCredentials: true,
-        }
-      );
-
+      const result = await axios.get(`${serverUrl}/api/user/currentuser`, {
+        withCredentials: true,
+      });
+      console.log(result);
       setUserData(result.data);
     } catch (error) {
       setUserData(null);
       console.log("User context error:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -38,7 +31,7 @@ const UserContext = ({ children }) => {
         { command },
         { withCredentials: true }
       );
-
+      console.log(result);
       return result.data;
     } catch (error) {
       console.log(error);
@@ -53,7 +46,6 @@ const UserContext = ({ children }) => {
     serverUrl,
     userData,
     setUserData,
-    loading,
     backendImage,
     setBackendImage,
     frontendImage,

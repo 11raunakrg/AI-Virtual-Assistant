@@ -5,14 +5,13 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Customize from "./pages/customize";
 import Customize2 from "./pages/customize2";
-
 import Home from "./pages/home";
 
 const App = () => {
   const { userData, loading } = useContext(userDataContext);
 
   if (loading) {
-    return <div>Loading...</div>; // Wait for initial fetch
+    return <div>Loading...</div>;
   }
 
   return (

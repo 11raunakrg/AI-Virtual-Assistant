@@ -42,39 +42,39 @@ const Customize2 = () => {
   };
 
   return (
-    <div
-      className="w-full min-h-screen bg-gradient-to-t from-black
-                to-[#04044d] flex flex-col items-center
-                  gap-8 pt-10 relative"
-    >
+    <div className="w-full min-h-screen bg-gradient-to-t from-black to-[#04044d] flex flex-col items-center gap-8 pt-10 relative px-4">
       <IoArrowBackSharp
-        onClick={() => {
-          navigate("/customize");
-        }}
-        className="absolute text-white top-[30px] left-[30px] w-[30px] h-auto  cursor-pointer"
+        onClick={() => navigate("/customize")}
+        className="absolute text-white top-6 left-6 w-8 h-8 cursor-pointer hover:scale-110 transition duration-200"
       />
 
-      <h1 className="text-3xl text-white font-bold mt-20">
-        Set <span className="text-blue-500">Virtual Assistant</span> Name
+      <h1 className="text-2xl md:text-3xl text-white font-bold mt-20 text-center">
+        Set <span className="text-blue-400">Virtual Assistant</span> Name
       </h1>
+
       <input
         type="text"
         placeholder="Enter Your Virtual Assistant Name..."
         required
-        className="text-xl font-semibold bg-white text-black px-5 py-4 border rounded-lg w-1/3"
+        className="text-lg md:text-xl bg-white text-black px-5 py-4 
+                   border-2 border-gray-300 rounded-xl w-full max-w-md 
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-md"
         value={assistantName}
-        onChange={(e) => {
-          setAssistantName(e.target.value);
-        }}
+        onChange={(e) => setAssistantName(e.target.value)}
       />
 
       <button
-        className="bg-green-800 text-white text-xl font-bold 
-                    px-5 py-3 mt-5 rounded-xl cursor-pointer"
+        disabled={!assistantName.trim()}
         onClick={() => {
           navigate("/");
           handleUpdateAssistant();
         }}
+        className={`px-8 py-3 mt-6 rounded-xl text-lg md:text-xl font-bold transition duration-300 ease-in-out transform shadow-lg cursor-pointer
+          ${
+            assistantName.trim()
+              ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:scale-105 hover:shadow-blue-500"
+              : "bg-gray-600 text-gray-300 cursor-not-allowed opacity-60"
+          }`}
       >
         Create Assistant
       </button>

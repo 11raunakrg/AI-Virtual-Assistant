@@ -17,20 +17,26 @@ const Card = ({ image }) => {
     setFrontendImage(null);
   };
 
+  const isSelected = selectedImage === image;
+
   return (
     <div
-      className={`w-64 h-80 bg-[#0a0a51] border-2 rounded-2xl border-blue-800
-         overflow-hidden hover:shadow-2xl hover:shadow-blue-950 hover:border-4
-          hover:border-white cursor-pointer ${
-            selectedImage == image
-              ? "border-4 border-white shadow-blue-950"
-              : null
-          }`}
       onClick={handleClick}
+      className={`
+        w-44 h-60 sm:w-52 sm:h-72 md:w-56 md:h-80 
+        bg-[#0a0a51] border-2 rounded-2xl overflow-hidden cursor-pointer
+        transform transition-all duration-300 ease-in-out
+        hover:scale-105 hover:shadow-2xl hover:shadow-blue-900
+        ${
+          isSelected
+            ? "border-4 border-blue-400 shadow-lg shadow-blue-500"
+            : "border-blue-800"
+        }
+      `}
     >
       <img
         src={image}
-        alt="customized image"
+        alt="customized option"
         className="w-full h-full object-cover"
       />
     </div>
